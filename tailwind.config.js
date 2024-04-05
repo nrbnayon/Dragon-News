@@ -5,6 +5,9 @@ export default withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: "'Poppins', sans-serif",
+      },
       keyframes: {
         animatedgradient: {
           "0%": { backgroundPosition: "0% 50%" },
