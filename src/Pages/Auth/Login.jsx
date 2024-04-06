@@ -1,18 +1,23 @@
-import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import NavBar from "../Shared/NavBar";
 
 const Login = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    console.log(form.get("email"));
+  };
+
   return (
-    <div className="hero min-h-screen bg-base-200 my-6 rounded-xl">
-      <div className="hero-content flex-col ">
+    <div>
+      <NavBar />
+      <div className="flex justify-center items-center flex-col min-h-[calc(100vh-20vh)] bg-base-200 my-6 rounded-xl">
         <div>
-          <h3>Login Your Account</h3>
+          <h3 className="text-3xl font-bold my-4">Login Your Account</h3>
         </div>
-        <div className="card shrink-0 w-full max-w-lg shadow-lg bg-base-100">
-          <form
-            // onSubmit={handleLogin}
-            className="card-body"
-          >
+        <div className="w-full md:3/4 lg:w-1/2 p-4 md:p-6 shadow-lg bg-base-100 rounded-xl">
+          <form className="w-full" onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -37,32 +42,21 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
-              <label className="label">
-                <a
-                  // onClick={handleForgetPassword}
-                  href="#"
-                  className="label-text-alt link link-hover"
-                >
+              <p className="label">
+                Forgot password?{" "}
+                <Link to="#" className="label-text-alt link link-hover">
                   Forgot password?
-                </a>
-              </label>
+                </Link>
+              </p>
               {/* {loginError && <p>{loginError}</p>} */}
               <div className="mt-4">
                 <button className="btn btn-primary w-full">Login</button>
               </div>
             </div>
-            <Typography variant="small" className="mt-6 flex justify-center">
+            <p className="mt-6 flex justify-center">
               Don&apos;t have an account?
-              <Link
-                as="a"
-                to="/register"
-                variant="small"
-                color="blue-gray"
-                className="ml-1 font-bold"
-              >
-                Register now
-              </Link>
-            </Typography>
+              <Link to="/register"> Register now</Link>
+            </p>
           </form>
         </div>
       </div>

@@ -88,7 +88,7 @@ const NavBar = () => {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost  avatar">
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={ProfileImg} />
+                <img src={ProfileImg} />
               </div>
             </div>
             <ul
@@ -96,24 +96,16 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <p className="justify-between">Profile</p>
               </li>
               <li>
-                <a>Settings</a>
+                <p>Settings</p>
               </li>
 
               <li>
                 <Link
                   to="/login"
                   // onClick={handleLogOut}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-primary border border-secondary"
-                      : "font-bold"
-                  }
                 >
                   Sign Out
                 </Link>

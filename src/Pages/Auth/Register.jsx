@@ -2,20 +2,28 @@ import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import NavBar from "../Shared/NavBar";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const username = form.get("username");
+    const photourl = form.get("imageUrl");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(username, photourl, email, password);
+  };
   return (
-    <div className="hero min-h-screen bg-base-200 my-6 rounded-xl">
-      <div className="hero-content flex-col">
+    <div>
+      <NavBar />
+      <div className="flex justify-center items-center flex-col min-h-screen bg-base-200 rounded-xl">
         <div>
-          <h3>Register Your Account</h3>
+          <h3 className="text-3xl font-bold my-4">Register Your Account</h3>
         </div>
-        <div className="card shrink-1 w-full max-w-lg shadow-lg bg-base-100">
-          <form
-            // onSubmit={handleRegister}
-            className="card-body"
-          >
+        <div className="w-full md:3/4 lg:w-1/2 shadow-lg bg-base-100 rounded-xl">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Full Name</span>
@@ -36,17 +44,10 @@ const Register = () => {
                 <input
                   type="text"
                   name="imageUrl"
-                  placeholder="Confirm your password"
+                  placeholder="Profile Image Url"
                   className="input input-bordered w-full pr-10"
                   required
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-0 top-0 h-full flex items-center justify-center p-2"
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
               </div>
             </div>
             <div className="form-control">
