@@ -1,11 +1,14 @@
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import NavBar from "../Shared/NavBar";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -14,6 +17,11 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
     console.log(username, photourl, email, password);
+
+    // Create User
+    createUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => console.error(error));
   };
   return (
     <div>

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ProfileImg from "../../assets/user.png";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("synthwave");
@@ -17,6 +18,17 @@ const NavBar = () => {
     const getTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", getTheme);
   }, [theme]);
+
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        console.log("Sign out successful", user);
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };
 
   const navLinks = (
     <>
@@ -101,20 +113,21 @@ const NavBar = () => {
               <li>
                 <p>Settings</p>
               </li>
-
-              <li>
-                <Link
-                  to="/login"
-                  // onClick={handleLogOut}
-                >
-                  Sign Out
-                </Link>
-              </li>
             </ul>
           </div>
-          <button className="border px-3 py-2 rounded-md">
-            <Link to="/login">Login</Link>
-          </button>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="border px-3 py-2 rounded-md"
+            >
+              <Link to="/login">Sign Out</Link>
+            </button>
+          ) : (
+            <button className="border px-3 py-2 rounded-md">
+              <Link to="/login">Login</Link>
+            </button>
+          )}
+
           <label className="cursor-pointer grid place-items-center">
             <input
               onChange={handleTheme}
