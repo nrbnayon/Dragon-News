@@ -69,6 +69,9 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-100 shadow-lg px-8 md:px-4 container mx-auto">
         <div className="navbar-start">
+          <div>
+            <p>{user?.email}</p>
+          </div>
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg

@@ -14,10 +14,10 @@ const Home = () => {
       <BreakingNews />
       <NavBar />
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-        <div className="border">
+        <div>
           <LeftSideNav />
         </div>
-        <div className="md:col-span-2 border">
+        <div className="md:col-span-2 ">
           {news.map((singleNews) => (
             <MainNewsCard key={singleNews._id} singleNews={singleNews} />
           ))}
