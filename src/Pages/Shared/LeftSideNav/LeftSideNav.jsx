@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import qZone1 from "../../../assets/qZone1.png";
+import qZone2 from "../../../assets/qZone2.png";
+import qZone3 from "../../../assets/qZone3.png";
 const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
 
@@ -22,6 +24,12 @@ const LeftSideNav = () => {
           {category.name}
         </Link>
       ))}
+      <div className="border rounded-sm p-4 space-y-1 bg-base-200">
+        <h3 className="text-2xl mb-4 font-semibold">Q-Zone</h3>
+        <img src={qZone1} />
+        <img src={qZone2} />
+        <img src={qZone3} />
+      </div>
     </div>
   );
 };

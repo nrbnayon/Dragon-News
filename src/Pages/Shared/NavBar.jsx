@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ProfileImg from "../../assets/user.png";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const NavBar = () => {
   const [theme, setTheme] = useState("synthwave");
   const handleTheme = (e) => {
@@ -23,10 +24,10 @@ const NavBar = () => {
   const handleSignOut = () => {
     logOut()
       .then(() => {
-        console.log("Sign out successful", user);
+        toast.success("Sign out successful");
       })
       .catch((error) => {
-        console.error("Error logging out:", error);
+        toast.warn("Sign Out Error:", error.message);
       });
   };
 
@@ -167,6 +168,7 @@ const NavBar = () => {
           </label>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

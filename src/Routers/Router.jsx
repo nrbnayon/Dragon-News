@@ -4,6 +4,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "./../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
+import News from "../Pages/Home/News";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +15,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("/news.json"),
+      },
+      {
+        path: "/news/:id",
+        element: (
+          <PrivateRoute>
+            <News />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/news.json"),
       },
       {
         path: "/login",

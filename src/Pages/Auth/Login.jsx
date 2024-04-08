@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../Shared/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { logIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -12,8 +16,11 @@ const Login = () => {
     const password = form.get("password");
 
     logIn(email, password)
-      .then((result) => console.log(result.user))
-      .catch((error) => console.error(error));
+      .then(() => {
+        toast.success("Login Success");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => toast.warn("Login Error", error.message));
   };
 
   return (
