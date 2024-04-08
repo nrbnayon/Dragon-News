@@ -30,7 +30,7 @@ const MainNewsCard = ({ singleNews }) => {
   });
 
   return (
-    <Link to={`/news/${_id}`}>
+    <Link to={`/news/${_id}`} state={title}>
       <section className="py-4 dark:bg-gray-100 dark:text-gray-800">
         <div className="rounded-md shadow-md transition-transform duration-500 hover:scale-105">
           <article className="flex flex-col dark:bg-gray-50">
